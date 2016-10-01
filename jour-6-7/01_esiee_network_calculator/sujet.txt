@@ -1,0 +1,47 @@
+NOM: esiee_network_calculator;
+FONCTIONS_AUTORISEES: malloc; free; write; send; socket; connect; inet_aton; atoi; htons; htonl; gethostbyname; read; recv; memcpy; memset; strcpy; strcmp; strncpy; strncmp; printf; listen; bind; accept
+FICHIERS_A_RENDDRE: vous nommerez vos fichiers comme vous le souhaitez. les fichiers relatifs au client devront se trouver dans le dossier "client", ceux relatifs au serveur, dans le dossier "server". Les fichiers communs aux deux se trouverons dans le meme dossier que ce sujet
+NOM_DU_PROGRAMME: esiee_calc_client; esiee_calc_server
+AIDE: man les fonctions autorisees; __attribute__((packed))
+SUJET:
+Pour cet exercice, vous devrez creer 2 programmes. L'un fera office de client, l'autre de serveur. Le principe est simple:
+le client prendra en argument une operation mathematique simple (deux operandes et un operateur). Il enverra cette operation au
+serveur grace a un protocol binaire qui vous sera presente un peu apres. Le serveur executera ce calcul et renverra le resultat
+au client. le serveur prendra en parametre deux chaines de caracteres, l'une le reseau sur lequel il acceptera les connections,
+et dans l'autre le port sur lequel il devra ecouter pour recevoir les nouvelles connexions. Le serveur devra pouvoir gerer les
+operateurs suivants:
++ (addition)
+- (soustraction)
+* (multiplication)
+/ (division)
+% (modulo)
+
+ex:
+dans un terminal, lancer la commande: ./exiee_calc_server 127.0.0.1 9999
+dans un autre terminal, lancer la commande: ./esiee_calc_client 127.0.0.1 9999 5 + 5
+
+Concernant le protocole de communication, vous l'implementerez en TCP et dans chaque paquet vous enverrez a la suite les
+informations suivantes:
+
+- encode sur 4 octets, un nombre vous permettant d'identifier que c'est un paquet de votre conception. ce nombre sera la somme des valeurs ascii de toutes les lettres de votre adresse email.
+- encode sur 42 octets, votre adresse email sous la forme d'une chaine de caractere. Les octets que vous n'utiliserez pas seront remplis de 0;
+- encode sur 4 octets, l'operande de gauche de l'operation mathematique que vous souhaitez calculer
+- encode sur 1 octet, l'operateur (+, -, etc). vous utiliserez la valeur ascii du caractere correspondant a cet operateur
+- encode sur 4 octets, l'operande de droite.
+- encode sur 4 octets, le resultat de l'operation mathematique.
+
+Chaque paquet reseau aura dont une taille fixe de 59 octets.
+
+ATTENTION, la communication entre le serveur et le client utilisera OBLIGATOIREMENT des paquets reseau ayant le format
+decrit au dessus. les derniers 4 octets sont reserves au resultat de l'operation mathematique, ce qui veut dire que ce champ doit
+valoir 0 quand le client envoie le paquet au serveur, que le serveur effectue l'operation mathematique puis renvoie au client
+un paquet contenant les memes informations que celui qu'il a recu mais contenant dans les 4 derniers octets le resultat de
+l'operation.
+
+une representation d'un paquet pourrait etre la structure presente dans le fichier packet.h
+
+ATTENTION, un ordinateur ne sait pas gerer les divisions par 0. Si vous faites une division par 0 dans votre programme, ce dernier
+sera tue par le systeme, de la meme maniere que si vous faites une erreur de segmentation. Faites egalement attention aux donnees
+
+Bon courage et n'hesitez pas a poser des questions si vous en avez !
+

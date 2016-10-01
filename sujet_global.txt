@@ -1,0 +1,14 @@
+// SUJET JOURS 6 ET 7 DE PISCINE
+
+Bonjour, dans ce depot vous trouverez les sujets des exercices a rendre pour les jours 6 et 7.
+Tous les exercices sont a rendre le dimanche 02/10 avant 23h59.
+Dans le dossier jour-6-7 vous trouverez les exercices, classes dans des sous-dossiers.
+Chaque dossier correspond a un exercice. Nous vous fournissons egalement dans chaque dossier le sujet de l'exercice.
+
+ATTENTION, dans chaque exercice un certain nombre de fonctions sont autorisees. Toute fonction non explicitement autorisee est
+interdite et son utilisation sera severement sanctionnee. Vous avez bien evidemment le droit d'utiliser vos propres fonctions,
+tires ou non des jours / exercices precedents.
+
+ATTENTION, votre travail est individuel (sauf consigne contraire des assistants) ce qui veut dire que, bien que l'entraide soit
+encouragee, la triche et le plagia sont formellement interdits. Toutes vos exercices seront verifies et la triche sera loudement
+sanctionnee.
